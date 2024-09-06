@@ -23,7 +23,7 @@ const styles = StyleSheet.create({
   grigItem: {
     flex: 1,
     margin: 16,
-    marginTop: 40,
+
     height: 150,
     borderRadius: 8,
     elevation: 5,
