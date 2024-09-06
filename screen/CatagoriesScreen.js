@@ -5,7 +5,9 @@ import CatagoryGrid from "../components/CatagoryGrid";
 const CatagoriesScreen = ({ navigation }) => {
   const renderItems = (itemData) => {
     const onPressHandler = () => {
-      navigation.navigate("Meals");
+      navigation.navigate("Meals", {
+        catagoryId: itemData.item.id,
+      });
     };
 
     return (
