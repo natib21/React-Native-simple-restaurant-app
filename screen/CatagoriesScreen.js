@@ -12,6 +12,7 @@ const CatagoriesScreen = () => {
       data={CATEGORIES}
       keyExtractor={(item) => item.id}
       renderItem={renderItems}
+      numColumns={2}
     />
   );
 };
