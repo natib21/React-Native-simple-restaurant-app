@@ -1,6 +1,6 @@
 import { Pressable, View, Text, StyleSheet, Platform } from "react-native";
 
-const CatagoryGrid = ({ title, color }) => {
+const CatagoryGrid = ({ title, color, onPress }) => {
   return (
     <View style={styles.grigItem}>
       <Pressable
@@ -9,6 +9,7 @@ const CatagoryGrid = ({ title, color }) => {
           styles.button,
           pressed ? styles.buttonPressed : null,
         ]}
+        onPress={onPress}
       >
         <View style={[styles.innerContainer, { backgroundColor: color }]}>
           <Text style={styles.title}>{title}</Text>
@@ -23,7 +24,6 @@ const styles = StyleSheet.create({
   grigItem: {
     flex: 1,
     margin: 16,
-
     height: 150,
     borderRadius: 8,
     elevation: 5,
