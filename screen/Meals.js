@@ -9,7 +9,22 @@ const Meals = ({ route }) => {
   });
 
   const renderMeal = (itemData) => {
-    return <MealItems title={itemData.item.title} />;
+    const mealItemProp = {
+      title: itemData.item.title,
+      imageUrl: itemData.item.imageUrl,
+      duration: itemData.item.duration,
+      complexity: itemData.item.complexity,
+      affordability: itemData.item.affordability,
+    };
+    return (
+      <MealItems
+        title={mealItemProp.title}
+        imageUrl={mealItemProp.imageUrl}
+        duration={mealItemProp.duration}
+        complexity={mealItemProp.complexity}
+        affordability={mealItemProp.affordability}
+      />
+    );
   };
 
   return (
