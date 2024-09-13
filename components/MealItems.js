@@ -6,7 +6,6 @@ import {
   StyleSheet,
   Platform,
 } from "react-native";
-import { Colors } from "react-native/Libraries/NewAppScreen";
 
 const MealItems = ({
   title,
@@ -14,12 +13,20 @@ const MealItems = ({
   duration,
   complexity,
   affordability,
+  navigation,
+  catId,
 }) => {
+  const handlePress = () => {
+    navigation.navigate("MealsDetail", {
+      catagoryId: catId,
+    });
+  };
   return (
     <View style={styles.mealItem}>
       <Pressable
         android_ripple={{ color: "#ccc" }}
         style={({ pressed }) => (pressed ? styles.buttonPressed : null)}
+        onPress={handlePress}
       >
         <View>
           <View style={styles.innerContainer}>
