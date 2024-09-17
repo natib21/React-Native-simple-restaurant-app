@@ -6,19 +6,20 @@ import {
   StyleSheet,
   Platform,
 } from "react-native";
-
+import MealsDetailComp from "./MealDetailComp";
+import { useNavigation } from "@react-navigation/native";
 const MealItems = ({
+  id,
   title,
   imageUrl,
   duration,
   complexity,
   affordability,
-  navigation,
-  catId,
 }) => {
+  const navigation = useNavigation();
   const handlePress = () => {
     navigation.navigate("MealsDetail", {
-      catagoryId: catId,
+      mealId: id,
     });
   };
   return (
@@ -33,13 +34,11 @@ const MealItems = ({
             <Image source={{ uri: imageUrl }} style={styles.image} />
             <Text style={styles.title}>{title}</Text>
           </View>
-          <View style={styles.details}>
-            <Text style={styles.detailsItem}>{duration}</Text>
-            <Text style={styles.detailsItem}>{complexity.toUpperCase()}</Text>
-            <Text style={styles.detailsItem}>
-              {affordability.toUpperCase()}
-            </Text>
-          </View>
+          <MealsDetailComp
+            duration={duration}
+            complexity={complexity}
+            affordability={affordability}
+          />
         </View>
       </Pressable>
     </View>
@@ -75,15 +74,5 @@ const styles = StyleSheet.create({
   },
   buttonPressed: {
     opacity: 0.5,
-  },
-  details: {
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "center",
-    padding: 8,
-  },
-  detailsItem: {
-    marginHorizontal: 4,
-    fontSize: 12,
   },
 });

@@ -23,16 +23,16 @@ const Meals = ({ route, navigation }) => {
       duration: itemData.item.duration,
       complexity: itemData.item.complexity,
       affordability: itemData.item.affordability,
+      id: itemData.item.id,
     };
     return (
       <MealItems
+        id={mealItemProp.id}
         title={mealItemProp.title}
         imageUrl={mealItemProp.imageUrl}
         duration={mealItemProp.duration}
         complexity={mealItemProp.complexity}
         affordability={mealItemProp.affordability}
-        navigation={navigation}
-        catId={catId}
       />
     );
   };
