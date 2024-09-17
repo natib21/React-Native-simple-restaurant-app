@@ -1,16 +1,10 @@
-import {
-  View,
-  Text,
-  Image,
-  StyleSheet,
-  ScrollView,
-  Button,
-} from "react-native";
+import { View, Text, Image, StyleSheet, ScrollView } from "react-native";
 import { MEALS } from "../data/dummy-data";
 import MealsDetailComp from "../components/MealDetailComp";
 import Subtitle from "../components/MealDetail/Subtitle";
 import List from "../components/MealDetail/List";
 import { useLayoutEffect } from "react";
+import IconButton from "../components/iconButton";
 const MealsDetail = ({ route, navigation }) => {
   const catId = route.params.mealId;
   const selectedMeal = MEALS.find((meal) => meal.id === catId);
@@ -22,7 +16,7 @@ const MealsDetail = ({ route, navigation }) => {
   useLayoutEffect(() => {
     navigation.setOptions({
       headerRight: () => {
-        return <Button title="tap Me" onPress={handlePress} />;
+        return <IconButton onPress={handlePress} icon="star" color="white" />;
       },
     });
   }, [navigation, handlePress]);
