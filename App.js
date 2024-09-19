@@ -8,6 +8,7 @@ import FavoriteScreen from "./screen/FavoriteScreen";
 import Meals from "./screen/Meals";
 import MealsDetail from "./screen/MealsDetail";
 import { Ionicons } from "@expo/vector-icons";
+import FavoriteContextProvider from "./store/context/favorite-context";
 const stack = createStackNavigator();
 
 const Drawer = createDrawerNavigator();
@@ -54,33 +55,35 @@ export default function App() {
   return (
     <>
       <StatusBar style="light" />
-      <NavigationContainer>
-        <stack.Navigator
-          screenOptions={{
-            headerStyle: {
-              backgroundColor: "#351401",
-            },
-            headerTintColor: "white",
-            contentStyle: { backgroundColor: "#351401" },
-          }}
-        >
-          <stack.Screen
-            name="Drawer"
-            component={DrawerNavigator}
-            options={{
-              headerShown: false,
+      <FavoriteContextProvider>
+        <NavigationContainer>
+          <stack.Navigator
+            screenOptions={{
+              headerStyle: {
+                backgroundColor: "#351401",
+              },
+              headerTintColor: "white",
+              contentStyle: { backgroundColor: "#351401" },
             }}
-          />
-          <stack.Screen name="Meals" component={Meals} />
-          <stack.Screen
-            name="MealsDetail"
-            component={MealsDetail}
-            options={{
-              title: "About the meal",
-            }}
-          />
-        </stack.Navigator>
-      </NavigationContainer>
+          >
+            <stack.Screen
+              name="Drawer"
+              component={DrawerNavigator}
+              options={{
+                headerShown: false,
+              }}
+            />
+            <stack.Screen name="Meals" component={Meals} />
+            <stack.Screen
+              name="MealsDetail"
+              component={MealsDetail}
+              options={{
+                title: "About the meal",
+              }}
+            />
+          </stack.Navigator>
+        </NavigationContainer>
+      </FavoriteContextProvider>
     </>
   );
 }
