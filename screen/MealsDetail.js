@@ -3,23 +3,35 @@ import { MEALS } from "../data/dummy-data";
 import MealsDetailComp from "../components/MealDetailComp";
 import Subtitle from "../components/MealDetail/Subtitle";
 import List from "../components/MealDetail/List";
-import { useLayoutEffect } from "react";
+import { useContext, useLayoutEffect } from "react";
 import IconButton from "../components/iconButton";
+import { FavoritesContext } from "../store/context/favorite-context";
 const MealsDetail = ({ route, navigation }) => {
+  const favoriteMeals = useContext(FavoritesContext);
   const catId = route.params.mealId;
   const selectedMeal = MEALS.find((meal) => meal.id === catId);
-
-  const handlePress = () => {
-    console.log("Presss!!");
+  const mealIsFavorite = favoriteMeals.ids.includes(catId);
+  const changeFavoritesStatusHandler = () => {
+    if (mealIsFavorite) {
+      favoriteMeals.removeFavorites(catId);
+    } else {
+      favoriteMeals.addFavorites(catId);
+    }
   };
 
   useLayoutEffect(() => {
     navigation.setOptions({
       headerRight: () => {
-        return <IconButton onPress={handlePress} icon="star" color="white" />;
+        return (
+          <IconButton
+            onPress={changeFavoritesStatusHandler}
+            icon={mealIsFavorite ? "star" : "star-outline"}
+            color="white"
+          />
+        );
       },
     });
-  }, [navigation, handlePress]);
+  }, [navigation, changeFavoritesStatusHandler]);
 
   return (
     <ScrollView style={styles.rootContainer}>

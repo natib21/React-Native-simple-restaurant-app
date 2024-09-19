@@ -13,8 +13,7 @@ const FavoriteContextProvider = ({ children }) => {
     setFavoriteMealId((cur) => [...cur, id]);
   };
   const removeFavorite = (id) => {
-    const favorite = favoriteMealId.filter((meals) => meals.id !== id);
-    setFavoriteMealId(favorite);
+    setFavoriteMealId((favorite) => favorite.filter((meals) => meals !== id));
   };
 
   const value = {
